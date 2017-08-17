@@ -1,0 +1,8 @@
+wpengine {
+  WPENGINE_PROD_ENV = 'git@git.wpengine.com:production/install-name.git'
+  WPENGINE_STAGE_ENV = 'git@git.wpengine.com:staging/install-name.git'
+  REPO_URL = 'https://github.com/username/repo-name.git'
+  REPO_CRED_ID = 'git-login-id'
+  SLACK_CHANNEL = '#channel'
+  DEBUG = 'true'
+}
