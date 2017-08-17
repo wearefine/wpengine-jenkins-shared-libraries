@@ -1,4 +1,4 @@
-# wpengine-jenkins-shared-library Changelog
+# wpengine-jenkins-shared-libraries Changelog
 
 ## 1.0.0
 

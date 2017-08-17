@@ -1,6 +1,15 @@
-# wpengine-jenkins-shared-library
+# wpengine-jenkins-shared-libraries
 
 Deploying your WPEnigne site on every change should be a smooth process. With this pipeline you can deploy to your main repo and let Jenkins take care of deploying it to WPEnigne.
+
+## Deployment Strategy
+
+This pipeline makes the assumption that you're using the staging feature in WPEngine. Since WPEngine creates a separate repository for production and staging we need a way to differentiate the two. This setup assumes master is deployed to production and stage is deployed to staging
+
+Branch | Env
+-------|-----------
+master | production
+stage  | staging
 
 ## Prerequisites
 
