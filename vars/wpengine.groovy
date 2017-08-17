@@ -8,10 +8,10 @@ def call(body) {
   body()
 
   if (!config.DEBUG) {
-    env.DEBUG = 'false'
+    config.DEBUG = 'false'
   }
   if (!config.SLACK_CHANNEL) {
-    env.SLACK_CHANNEL = '#deploys'
+    config.SLACK_CHANNEL = '#deploys'
   }
   if (!config.WPENGINE_PROD_ENV) {
     error 'WPENGINE_PROD_ENV is a required field.'
@@ -28,11 +28,11 @@ def call(body) {
 
   node {
     timestamps {
-      if (env.DEBUG == 'false') {
-        notifySlack(env.SLACK_CHANNEL)
+      if (config.DEBUG == 'false') {
+        notifySlack(config.SLACK_CHANNEL)
       }
 
-      if (env.DEBUG == 'true') {
+      if (config.DEBUG == 'true') {
         echo '***********************************'
         echo "CHECKOUT BRANCH: ${env.BRANCH_NAME}"
         echo '***********************************'
@@ -45,8 +45,8 @@ def call(body) {
         }
       } catch(Exception e) {
         currentBuild.result = 'FAILURE'
-        if (env.DEBUG == 'false') {
-          notifySlack(env.SLACK_CHANNEL)
+        if (config.DEBUG == 'false') {
+          notifySlack(config.SLACK_CHANNEL)
         }
         emailext attachLog: true, body: "${env.JOB_NAME} - ${env.BUILD_DISPLAY_NAME} *${currentBuild.result}* - ${env.BUILD_URL}", compressLog: true, subject: "${env.JOB_NAME} - *${currentBuild.result}*", recipientProviders: [[$class: 'DevelopersRecipientProvider']]
         throw e
@@ -65,16 +65,16 @@ def call(body) {
         }
       } catch(Exception e) {
         currentBuild.result = 'FAILURE'
-        if (env.DEBUG == 'false') {
-          notifySlack(env.SLACK_CHANNEL)
+        if (config.DEBUG == 'false') {
+          notifySlack(config.SLACK_CHANNEL)
         }
         emailext attachLog: true, body: "${env.JOB_NAME} - ${env.BUILD_DISPLAY_NAME} *${currentBuild.result}* - ${env.BUILD_URL}", compressLog: true, subject: "${env.JOB_NAME} - *${currentBuild.result}*", recipientProviders: [[$class: 'DevelopersRecipientProvider']]
         throw e
       }
 
     } // timestamps
-    if (env.DEBUG == 'false') {
-      notifySlack(env.SLACK_CHANNEL)
+    if (config.DEBUG == 'false') {
+      notifySlack(config.SLACK_CHANNEL)
     }
     emailext attachLog: true, body: "${env.JOB_NAME} - ${env.BUILD_DISPLAY_NAME} *${currentBuild.result}* - ${env.BUILD_URL}", compressLog: true, subject: "${env.JOB_NAME} - *${currentBuild.result}*", recipientProviders: [[$class: 'DevelopersRecipientProvider']]
   } //node
