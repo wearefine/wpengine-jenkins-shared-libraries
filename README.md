@@ -4,7 +4,7 @@ Deploying your WPEnigne site on every change should be a smooth process. With th
 
 ## Deployment Strategy
 
-This pipeline makes the assumption that you're using the staging feature in WPEngine. Since WPEngine creates a separate repository for production and staging we need a way to differentiate the two. This setup assumes master is deployed to production and stage is deployed to staging
+This pipeline makes the assumption that you're using the staging feature in WPEngine. Since WPEngine creates a separate repository for production and staging we need a way to differentiate the two. This setup assumes master is deployed to production and stage is deployed to staging. The very first time you run this job it will add the remote origin but not push changes. All consecutive runs will make sure the remote is there and push changes.
 
 Branch | Env
 -------|-----------
