@@ -56,10 +56,10 @@ def call(body) {
         stage('Deploy'){
           milestone label: 'Deploy'
           if(env.BRANCH_NAME == 'master'){
-            sh "git remote add production ${config.WPENGINE_PROD_ENV} || git push production master"
+            sh "git remote add production ${config.WPENGINE_PROD_ENV} || git push -f production master"
           }
           else if(env.BRANCH_NAME == 'stage') {
-            sh "git remote add staging ${config.WPENGINE_STAGE_ENV} || git push staging stage"
+            sh "git remote add staging ${config.WPENGINE_STAGE_ENV} || git push -f staging stage"
           }
           currentBuild.result = 'SUCCESS'
         }
