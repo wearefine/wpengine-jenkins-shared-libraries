@@ -1,6 +1,6 @@
 # wpengine-jenkins-shared-libraries
 
-Deploying your WPEnigne site on every change should be a smooth process. With this pipeline you can deploy to your main repo and let Jenkins take care of deploying it to WPEnigne.
+Deploying your WPEngine site on every change should be a smooth process. With this pipeline you can deploy to your main repo and let Jenkins take care of deploying it to WPEngine.
 
 ## Deployment Strategy
 
